@@ -1,0 +1,40 @@
+
+Two sum 
+https://leetcode.com/problems/two-sum/
+
+
+
+
+
+
+
+
+
+#include <vector>
+#include <unordered_map>
+
+using namespace std;
+
+class Solution {
+public:
+    vector<int> twoSum(const vector<int>& nums, int target) {
+        unordered_map<int, int> num_to_index; // Hash map to store each number and its index
+
+        // Loop through each element in the vector `nums`
+        for (int i = 0; i < nums.size(); i++) {
+            int complement = target - nums[i]; // Calculate the complement of the current element
+
+            // Check if the complement is already in the map
+            if (num_to_index.find(complement) != num_to_index.end()) {
+                // Return the indices of the two numbers that add up to target
+                return {num_to_index[complement], i};
+            }
+
+            // Store the current number with its index in the map
+            num_to_index[nums[i]] = i;
+        }
+
+        return {}; // If no solution is found, return an empty vector
+    }
+};
+
